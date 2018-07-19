@@ -66,8 +66,12 @@
       transportUnit.proof_of_delivery = tx.proof_of_delivery
       transportUnit.transport_unit_status = tx.transport_unit_status 
       transportUnit.transportation_state = tx.transportation_state;
-      transportUnit.other = tx.other;
       transportUnit.proof_of_theft_base64 = tx.proof_of_theft_base64;
+      transportUnit.insurance_validation = tx.insurance_validation; 
+      transportUnit.collect_insurance_document = tx.collect_insurance_document;
+      transportUnit.proof_of_insurance_contract = tx.proof_of_insurance_contract;
+      transportUnit.insurance_claim_approved = tx.insurance_claim_approved;
+      transportUnit.other = tx.other;
       return transportUnitRegistry.add(transportUnit)
       .then(function (_res) {
         const transportUnitEvent = factory.newEvent(namespace, 'TransportUnitCreated');
@@ -318,6 +322,40 @@
 
 /**
  * Update current owner of transportUnit
+ * @param {org.logistic.network.AddProofOfDelivery} tx
+ * @transaction
+ */
+
+ async function AddProofOfDelivery(tx) {
+
+  const factory = getFactory();
+  const namespace = 'org.logistic.network';
+
+  const transportUnit = tx.transport_unit
+  const TransportUnitRegistry = await getAssetRegistry(namespace + ".TransportUnit");
+  const transportUnitExist = await TransportUnitRegistry.exists(transportUnit.id);
+
+  if ( !transportUnitExist ) {
+    throw Error('Transport unit does not exist')
+  } 
+
+  transportUnit.proof_of_delivery = tx.proof_of_delivery;
+
+  return TransportUnitRegistry.update(transportUnit)
+  .then(function(_res) {
+    const transportUnitEvent = factory.newEvent(namespace, 'ProofOfDeliveryAdded');
+    transportUnitEvent.transport_unit = transportUnit;
+    transportUnitEvent.proof_of_delivery = transportUnit.proof_of_delivery;
+    emit(transportUnitEvent);
+  })
+  .catch(function(error){
+    console.log(error)
+    return error
+  })
+}
+
+/**
+ * Update current owner of transportUnit
  * @param {org.logistic.network.AddProofOfTheft} tx
  * @transaction
  */
@@ -342,6 +380,143 @@
     const transportUnitEvent = factory.newEvent(namespace, 'ProofOfTheftAdded');
     transportUnitEvent.transport_unit = transportUnit;
     transportUnitEvent.proof_of_theft_base64 = transportUnit.proof_of_theft_base64;
+    emit(transportUnitEvent);
+  })
+  .catch(function(error){
+    console.log(error)
+    return error
+  })
+}
+
+/**
+ * Update current owner of transportUnit
+ * @param {org.logistic.network.AddInsuranceValidation} tx
+ * @transaction
+ */
+
+ async function AddInsuranceValidation(tx) {
+
+  const factory = getFactory();
+  const namespace = 'org.logistic.network';
+
+  const transportUnit = tx.transport_unit
+  const TransportUnitRegistry = await getAssetRegistry(namespace + ".TransportUnit");
+  const transportUnitExist = await TransportUnitRegistry.exists(transportUnit.id);
+
+  if ( !transportUnitExist ) {
+    throw Error('Transport unit does not exist')
+  } 
+
+  transportUnit.insurance_validation = tx.insurance_validation;
+
+  return TransportUnitRegistry.update(transportUnit)
+  .then(function(_res) {
+    const transportUnitEvent = factory.newEvent(namespace, 'InsuranceValidationAdded');
+    transportUnitEvent.transport_unit = transportUnit;
+    transportUnitEvent.insurance_validation = transportUnit.insurance_validation;
+    emit(transportUnitEvent);
+  })
+  .catch(function(error){
+    console.log(error)
+    return error
+  })
+}
+
+/**
+ * Update current owner of transportUnit
+ * @param {org.logistic.network.AddCollectInsuranceDocument} tx
+ * @transaction
+ */
+
+ async function AddCollectInsuranceDocument(tx) {
+
+  const factory = getFactory();
+  const namespace = 'org.logistic.network';
+
+  const transportUnit = tx.transport_unit
+  const TransportUnitRegistry = await getAssetRegistry(namespace + ".TransportUnit");
+  const transportUnitExist = await TransportUnitRegistry.exists(transportUnit.id);
+
+  if ( !transportUnitExist ) {
+    throw Error('Transport unit does not exist')
+  } 
+
+  transportUnit.collect_insurance_document = tx.collect_insurance_document;
+
+  return TransportUnitRegistry.update(transportUnit)
+  .then(function(_res) {
+    const transportUnitEvent = factory.newEvent(namespace, 'CollectInsuranceDocumentAdded');
+    transportUnitEvent.transport_unit = transportUnit;
+    transportUnitEvent.collect_insurance_document = transportUnit.collect_insurance_document;
+    emit(transportUnitEvent);
+  })
+  .catch(function(error){
+    console.log(error)
+    return error
+  })
+}
+
+/**
+ * Update current owner of transportUnit
+ * @param {org.logistic.network.AddProofOfInsuranceContract} tx
+ * @transaction
+ */
+
+ async function AddProofOfInsuranceContract(tx) {
+
+  const factory = getFactory();
+  const namespace = 'org.logistic.network';
+
+  const transportUnit = tx.transport_unit
+  const TransportUnitRegistry = await getAssetRegistry(namespace + ".TransportUnit");
+  const transportUnitExist = await TransportUnitRegistry.exists(transportUnit.id);
+
+  if ( !transportUnitExist ) {
+    throw Error('Transport unit does not exist')
+  } 
+
+  transportUnit.proof_of_insurance_contract = tx.proof_of_insurance_contract;
+
+  return TransportUnitRegistry.update(transportUnit)
+  .then(function(_res) {
+    const transportUnitEvent = factory.newEvent(namespace, 'ProofOfInsuranceContractAdded');
+    transportUnitEvent.transport_unit = transportUnit;
+    transportUnitEvent.proof_of_insurance_contract = transportUnit.proof_of_insurance_contract;
+    emit(transportUnitEvent);
+  })
+  .catch(function(error){
+    console.log(error)
+    return error
+  })
+}
+
+
+/**
+ * Update current owner of transportUnit
+ * @param {org.logistic.network.AddInsuranceClaimApproved} tx
+ * @transaction
+ */
+
+ async function AddInsuranceClaimApproved(tx) {
+
+  const factory = getFactory();
+  const namespace = 'org.logistic.network';
+
+  const transportUnit = tx.transport_unit
+  const TransportUnitRegistry = await getAssetRegistry(namespace + ".TransportUnit");
+  const transportUnitExist = await TransportUnitRegistry.exists(transportUnit.id);
+
+  if ( !transportUnitExist ) {
+    throw Error('Transport unit does not exist')
+  } 
+
+  transportUnit.insurance_claim_approved = tx.insurance_claim_approved;
+
+  return TransportUnitRegistry.update(transportUnit)
+  .then(function(_res) {
+    const transportUnitEvent = factory.newEvent(namespace, 'InsuranceClaimApprovedAdded');
+    transportUnitEvent.transport_unit = transportUnit;
+    transportUnitEvent.insurance_claim_approved = transportUnit.insurance_claim_approved;
     emit(transportUnitEvent);
   })
   .catch(function(error){

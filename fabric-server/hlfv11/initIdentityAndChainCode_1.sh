@@ -197,7 +197,7 @@ cat << EOF > $(pwd)/tmp/endorsement-policy.json
     }
     ],
     "policy": {
-        "2-of": [
+        "3-of": [
         {
             "signed-by": 0
         },
@@ -257,16 +257,18 @@ done
 # composer identity request -c PeerAdmin@${NETWORK_NAME}-org1 -u admin -s adminpw -d adminOrg1
 # composer identity request -c PeerAdmin@${NETWORK_NAME}-org2 -u admin -s adminpw -d adminOrg2
 
-# This command creates ***TWO*** new card file that are ***REGISTERED*** as composer network ADMIN on INSTANTIATION
-composer network start -c PeerAdmin@${NETWORK_NAME}-${NAME_ORG[0]} -n $NETWORK_NAME -V $BNA_VERSION -o endorsementPolicyFile=${DIR}/tmp/endorsement-policy.json \
- -A admin${NAME_ORG[0]} -C admin${NAME_ORG[0]}/admin-pub.pem \
- -A admin${NAME_ORG[1]} -C admin${NAME_ORG[1]}/admin-pub.pem \
- -A admin${NAME_ORG[2]} -C admin${NAME_ORG[2]}/admin-pub.pem \
+# This command creates ***TĤREE*** new card file that are ***REGISTERED*** as composer network ADMIN on INSTANTIATION
+composer network start -c PeerAdmin@${NETWORK_NAME}-${NAME_ORG[0]} \
+-n $NETWORK_NAME -V $BNA_VERSION -o endorsementPolicyFile=${DIR}/tmp/endorsement-policy.json \
+-A admin${NAME_ORG[0]^} -C admin${NAME_ORG[0]^}/admin-pub.pem \
+-A admin${NAME_ORG[1]^} -C admin${NAME_ORG[1]^}/admin-pub.pem \
+-A admin${NAME_ORG[2]^} -C admin${NAME_ORG[2]^}/admin-pub.pem \
 
 # Recreate and import card for adminOrg1 (oblige to re create composer bug) 
 composer card create -p ${DIR}/tmp/${NAME_ORG[0]}/${NETWORK_NAME}-${NAME_ORG[0]}.json \
--u admin${NAME_ORG[0]^} -n $NETWORK_NAME -c admin${NAME_ORG[0]^}/admin-pub.pem -k admin${NAME_ORG[0]^}/admin-priv.pem \
-&& composer card import -f admin${NAME_ORG[0]^}@${NETWORK_NAME}.card
+-u admin${NAME_ORG[0]^} -n $NETWORK_NAME \
+-c admin${NAME_ORG[0]^}/admin-pub.pem -k admin${NAME_ORG[0]^}/admin-priv.pem && \
+composer card import -f admin${NAME_ORG[0]^}@${NETWORK_NAME}.card
 
 # composer card create -p ${DIR}/tmp/org2/${NETWORK_NAME}-org2-provisory.json -u adminOrg2 -n $NETWORK_NAME -c adminOrg2/admin-pub.pem -k adminOrg2/admin-priv.pem \
 # && composer card import -f adminOrg2@${NETWORK_NAME}.card
@@ -470,8 +472,8 @@ cat << EOF > $(pwd)/tmp/card/${NETWORK_NAME}-${NAME_ORG[2]}.json
             "eventUrl": "grpc://${HOST_IP[0]}:7053"
         },
         "peer0.${DOMAIN_ORG[1]}": {
-            "url": "${HOST_IP[1]}:8051",
-            "eventUrl": "${HOST_IP[1]}:8053"
+            "url": "grpc://${HOST_IP[1]}:8051",
+            "eventUrl": "grpc://${HOST_IP[1]}:8053"
         },
         "peer0.${DOMAIN_ORG[2]}": {
             "url": "grpc://localhost:8051",
@@ -506,9 +508,10 @@ EOF
 
 # Create card to send to Org 2 with adapted IP connection.json file
 composer card create -p ${DIR}/tmp/card/${NETWORK_NAME}-${NAME_ORG[1]}.json \
--u admin${NAME_ORG[1]^} -n $NETWORK_NAME -c ${NAME_ORG[1]}/admin-pub.pem -k ${NAME_ORG[1]}/admin-priv.pem 
+-u admin${NAME_ORG[1]^} -n $NETWORK_NAME -c admin${NAME_ORG[1]^}/admin-pub.pem -k admin${NAME_ORG[1]^}/admin-priv.pem 
+
 composer card create -p ${DIR}/tmp/card/${NETWORK_NAME}-${NAME_ORG[2]}.json \
--u admin${NAME_ORG[2]^} -n $NETWORK_NAME -c ${NAME_ORG[2]}/admin-pub.pem -k ${NAME_ORG[2]}/admin-priv.pem 
+-u admin${NAME_ORG[2]^} -n $NETWORK_NAME -c admin${NAME_ORG[2]^}/admin-pub.pem -k admin${NAME_ORG[2]^}/admin-priv.pem 
 
 # Create folder containing the card to send
 mv admin${NAME_ORG[1]^}@${NETWORK_NAME}.card $(pwd)/../toSendAfterIdentityCreation

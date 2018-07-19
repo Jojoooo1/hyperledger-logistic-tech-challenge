@@ -25,6 +25,7 @@ CONFIGTX_ORGANISATION2_NAME=Carriers
 CONFIGTX_ORGANISATION2_ID=CarriersMSP
 CHANNEL_NAME=channel
 
+COUCHDB_NAME=couchdb2
 # Removed composer folder caused by tar archive
 
 # Get private key file name of CA 
@@ -42,7 +43,7 @@ docker run -d --network="my-net" --name ca.${DOMAIN_ORG[1]} -p 8054:7054 \
 hyperledger/fabric-ca:x86_64-1.1.0 sh -c 'fabric-ca-server start -b admin:adminpw -d'
 
 
-docker run -d --network="my-net" --name couchdb2 -p 6984:5984 \
+docker run -d --network="my-net" --name $COUCHDB_NAME -p 6984:5984 \
 -e COUCHDB_USER= -e COUCHDB_PASSWORD= \
 -e CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=my-net \
 hyperledger/fabric-couchdb:0.4.8
@@ -59,7 +60,7 @@ docker run -d --link ${DOMAIN_ORDERER}:${DOMAIN_ORDERER} --link peer0.${DOMAIN_O
 -e CORE_PEER_LOCALMSPID=${CONFIGTX_ORGANISATION2_ID} \
 -e CORE_PEER_MSPCONFIGPATH=/etc/hyperledger/peer/msp \
 -e CORE_LEDGER_STATE_STATEDATABASE=CouchDB \
--e CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb2:5984 \
+-e CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=${COUCHDB_NAME}:5984 \
 -e CORE_LEDGER_STATE_COUCHDBCONFIG_USERNAME= \
 -e CORE_LEDGER_STATE_COUCHDBCONFIG_PASSWORD= \
 -e CORE_NEXT=true \

@@ -88,7 +88,7 @@ function generateFolderToBeSendAfterBuild() {
     ../startFabric_$((i+2)).sh \
     ../reset.sh \
     crypto-config/peerOrganizations/${other_participants[$i]} \
-    channel-artifacts/${CONFIGTX_ORGANISATION_NAME[$((i+1))]anchors.tx 
+    channel-artifacts/${CONFIGTX_ORGANISATION_NAME[$((i+1))]}anchors.tx
     res=$?
     set +x
     if [ $res -ne 0 ]; then
