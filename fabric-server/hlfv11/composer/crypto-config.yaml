@@ -1,0 +1,46 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# ---------------------------------------------------------------------------
+# "OrdererOrgs" - Definition of organizations managing orderer nodes
+# ---------------------------------------------------------------------------
+OrdererOrgs:
+  # ---------------------------------------------------------------------------
+  # Orderer
+  # ---------------------------------------------------------------------------
+  - Name: intelipost
+    Domain: orderer.logistic.com
+    # ---------------------------------------------------------------------------
+    # "Specs" - See PeerOrgs below for complete description
+    # ---------------------------------------------------------------------------
+    Specs:
+      - Hostname: intelipost
+# ---------------------------------------------------------------------------
+# "PeerOrgs" - Definition of organizations managing peer nodes
+# ---------------------------------------------------------------------------
+PeerOrgs:
+  - Name: Intelipost
+    Domain: intelipost.shipper.logistic.com
+    EnableNodeOUs: true
+
+    Template:
+      Count: 1
+    Users:
+      Count: 0
+  - Name: Carriers
+    Domain: carriers.transporter.logistic.com
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 0
+
+  - Name: Correios
+    Domain: correios.transporter.logistic.com
+    EnableNodeOUs: true
+    Template:
+      Count: 1
+    Users:
+      Count: 0

@@ -1,0 +1,271 @@
+namespace org.logistic.network
+
+concept Address {
+ o String first_name
+ o String last_name
+ o String email optional
+ o String phone optional
+ o String cellphone optional
+ o String is_company
+ o String federal_tax_payer_id
+ o String country
+ o String state
+ o String city
+ o String address
+ o String number
+ o String neighborhood
+ o String reference
+ o String additional
+ o String zip
+}
+
+concept Dimensions {
+  o Double L
+  o Double H
+  o Double W
+}
+
+concept ProofOfDelivery {
+  o String url
+  o String proof_base64
+  o String name
+  o String rg
+}
+
+concept InsuranceValidation {
+  o String id
+  o String receive_base64
+}
+
+concept ProofOfInsuranceContract {
+  o Boolean response
+  o String message
+}
+
+concept CollectInsuranceDocument {
+  o String document_base64
+}
+
+concept InsuranceClaimApproved {
+  o Boolean response
+  o String message
+}
+
+asset TransportUnit identified by id {
+  --> Shipper shipper
+  --> Transporter transporter
+  --> Insurance insurance
+  --> LogisticOperator logistic_operator
+  --> Organization current_owner
+  o String id
+  o String nfe_xml_base64
+  o String nfe_key
+  o String cte_xml_base64 
+  o String cte_key
+  o String mdfe_xml_base64  
+  o String mdfe_key
+  o Address destinator
+  o Double weight
+  o Dimensions dimensions
+  o ProofOfDelivery proof_of_delivery
+  o String transport_unit_status  
+  o String transportation_state
+  o String proof_of_theft_base64
+  o InsuranceValidation insurance_validation
+  o CollectInsuranceDocument collect_insurance_document
+  o ProofOfInsuranceContract proof_of_insurance_contract
+  o InsuranceClaimApproved insurance_claim_approved
+  o String other
+}
+
+
+abstract participant Organization identified by name {
+  o String name
+  o String email
+  o Address address
+}
+
+participant Shipper extends Organization {
+}
+
+participant Transporter extends Organization {
+}
+
+participant LogisticOperator extends Organization {
+}
+
+participant Insurance extends Organization {
+}
+
+participant InsuranceBroker extends Organization {
+}
+
+participant RiskManagement extends Organization {
+}
+
+participant MeasurementOperator extends Organization {
+}
+
+participant Government extends Organization {
+}
+
+participant Other extends Organization {
+}
+
+transaction CreateTransportUnit {
+  --> Shipper shipper
+  --> Transporter transporter
+  --> Insurance insurance
+  --> LogisticOperator logistic_operator
+  --> Organization current_owner
+  o String id
+  o String nfe_xml_base64
+  o String nfe_key
+  o String cte_xml_base64 
+  o String cte_key
+  o String mdfe_xml_base64  
+  o String mdfe_key
+  o Address destinator
+  o Double weight
+  o Dimensions dimensions
+  o ProofOfDelivery proof_of_delivery
+  o String transport_unit_status  
+  o String transportation_state
+  o String proof_of_theft_base64
+  o InsuranceValidation insurance_validation
+  o CollectInsuranceDocument collect_insurance_document
+  o ProofOfInsuranceContract proof_of_insurance_contract
+  o InsuranceClaimApproved insurance_claim_approved
+  o String other
+}
+event TransportUnitCreated {
+  --> TransportUnit transport_unit
+}
+
+
+transaction UpdateMeasure {
+  --> TransportUnit transport_unit
+  o Dimensions dimensions
+  o Double weight
+}
+event MeasureUpdated {
+  --> TransportUnit transport_unit
+  o Dimensions dimensions
+  o Double weight
+}
+
+
+transaction StolenTransportUnit {
+  --> TransportUnit transport_unit
+  o String transport_unit_status
+}
+event TransportUnitStolen {
+  --> TransportUnit transport_unit
+  o String transport_unit_status
+}
+
+
+transaction AddNfe {
+  --> TransportUnit transport_unit
+  o String nfe_xml_base64
+  o String nfe_key
+}
+event NfeAdded {
+  --> TransportUnit transport_unit
+  o String nfe_xml_base64
+  o String nfe_key
+}
+
+
+transaction AddCte {
+  --> TransportUnit transport_unit
+  o String cte_xml_base64
+  o String cte_key
+}
+event CteAdded {
+  --> TransportUnit transport_unit
+  o String cte_xml_base64
+  o String cte_key
+}
+
+
+transaction AddMdfe {
+  --> TransportUnit transport_unit
+  o String mdfe_xml_base64
+  o String mdfe_key
+}
+event MdfeAdded {
+ --> TransportUnit transport_unit
+ o String mdfe_xml_base64
+ o String mdfe_key
+}
+
+
+transaction ChangeOwnership {
+  --> TransportUnit transport_unit
+  --> Organization new_owner
+}
+event OwnershipChanged {
+  --> TransportUnit transport_unit
+  --> Organization new_owner
+}
+
+
+transaction AddProofOfDelivery {
+  --> TransportUnit transport_unit
+  o ProofOfDelivery proof_of_delivery
+}
+event ProofOfDeliveryAdded {
+  --> TransportUnit transport_unit
+  o ProofOfDelivery proof_of_delivery
+}
+
+
+transaction AddProofOfTheft {
+  --> TransportUnit transport_unit
+  o String proof_of_theft_base64
+}
+event ProofOfTheftAdded {
+  --> TransportUnit transport_unit
+  o String proof_of_theft_base64
+}
+
+
+transaction AddInsuranceValidation {
+  --> TransportUnit transport_unit
+  o InsuranceValidation insurance_validation
+}
+event InsuranceValidationAdded {
+  --> TransportUnit transport_unit
+  o InsuranceValidation insurance_validation
+}
+
+
+transaction AddCollectInsuranceDocument {
+  --> TransportUnit transport_unit
+  o CollectInsuranceDocument collect_insurance_document
+}
+event CollectInsuranceDocumentAdded {
+  --> TransportUnit transport_unit
+  o CollectInsuranceDocument collect_insurance_document
+}
+
+
+transaction AddProofOfInsuranceContract {
+  --> TransportUnit transport_unit
+  o ProofOfInsuranceContract proof_of_insurance_contract
+}
+event ProofOfInsuranceContractAdded {
+  --> TransportUnit transport_unit
+  o ProofOfInsuranceContract proof_of_insurance_contract
+}
+
+
+transaction AddInsuranceClaimApproved {
+  --> TransportUnit transport_unit
+  o InsuranceClaimApproved insurance_claim_approved
+}
+event InsuranceClaimApprovedAdded {
+  --> TransportUnit transport_unit
+  o InsuranceClaimApproved insurance_claim_approved
+}
