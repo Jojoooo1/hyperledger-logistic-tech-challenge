@@ -23,11 +23,11 @@ On PC2, PC3: Join the swarm as worker by coping the command showed after swarm i
 `docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31`<br/><br/>
 
 
-Create network:<br/>
-docker network create --attachable --driver overlay my-net
+Create docker network <br/>
+`docker network create --attachable --driver overlay my-net`
 
-Open Port on your different host:
-sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp && sudo ufw allow 4789/udp
+Open Port on your different host <br/>
+`sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp && sudo ufw allow 4789/udp`
 
 (TCP port 2377 for cluster management communications, TCP and UDP port 7946 for communication among nodes UDP port 4789 for overlay network traffic)
 
