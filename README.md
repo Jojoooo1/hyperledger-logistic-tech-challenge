@@ -11,7 +11,7 @@ This script will generate crypto and channel artifacts necessary for creating th
 `startFabric_x.sh`<br/> 
 Script to start docker container.<br/><br/>
 `initIdentityAndChainCode_1.sh`<br/>
-This script create all the identities and instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card. `initIdentityAndChainCode_2.sh` & `initIdentityAndChainCode_3.sh` are just for importing the card created by `initIdentityAndChainCode_1.sh` and placed in toSendAfterIdentityCreation.
+This script create all the identities and instantiate the smart contract on node 1, 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card. `initIdentityAndChainCode_2.sh` & `initIdentityAndChainCode_3.sh` are just for importing the card created by `initIdentityAndChainCode_1.sh` and placed in toSendAfterIdentityCreation.
 
 ### Create swarm:<br/>
 Initialize swarm manager on PC1:<br/>
