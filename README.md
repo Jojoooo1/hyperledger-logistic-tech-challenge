@@ -9,19 +9,21 @@ The project has been developed using Hyperledger Fabric and Hyperledger composer
 `build.sh`<br/> 
 This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container. (don't forget to change BIN_DIR to your corresponding path)<br/><br/>
 `startFabric_x.sh`<br/> 
-Contain the script to start docker container.<br/><br/>
-`initIdentityAndChainCode_x.sh`
-Will create all the identity to participate to the network and also instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card.
+Script to start docker container.<br/><br/>
+`initIdentityAndChainCode_x.sh`<br/>
+This script create all the identities and instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card.
 
-### Step to create the network
-Create swarm:
-On PC1: initialize the host as manager
-	docker swarm init --advertise-addr 192.168.1.31 (in terminal get your ip: ip addr  => should show inet 192.168.1.31)
+### Create swarm:<br/>
+Initialize swarm manager on PC1:<br/>
+`docker swarm init --advertise-addr 192.168.1.31` (in terminal get your ip: ip addr  => should show inet 192.168.1.31)<br/>
+It will show you something similar as `docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31` <br/><br/>
 
-On PC2: join the swarm as worker
-docker swarm join --token ************************************** 
 
-Create network:
+On PC2, PC3: Join the swarm as worker by coping the command showed after swarm init:<br/>
+`docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31`<br/><br/>
+
+
+Create network:<br/>
 docker network create --attachable --driver overlay my-net
 
 Open Port on your different host:
@@ -29,10 +31,10 @@ sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp &&
 
 (TCP port 2377 for cluster management communications, TCP and UDP port 7946 for communication among nodes UDP port 4789 for overlay network traffic)
 
+### Mount the project<br/>
 1. Build the config `build.sh`
-2. Send file created in folder toSendAfterBuild to corresponding host
-3. Start `startFabric_1.sh` in host1 
-4. Start `StartFabric_2.sh` in host 2, `StartFabric_3.sh` in host 3
-5. Create the identity and chaincode instantiation by executing `initIdentityAndChainCode_1.sh`
-6. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as `initIdentityAndChainCode_x.sh`
-7. Start `initIdentityAndChainCode_2.sh` in host 2, `initIdentityAndChainCode_3.sh` in host 3
+2. Send file created in folder toSendAfterBuild to host 2 & 3
+3. Start `startFabric_1.sh` in host1, start `StartFabric_2.sh` in host 2, `StartFabric_3.sh` in host 3
+4. Create the identity and chaincode instantiation by executing `initIdentityAndChainCode_1.sh` in host 1
+5. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as `initIdentityAndChainCode_x.sh`
+6. Start `initIdentityAndChainCode_2.sh` in host 2, `initIdentityAndChainCode_3.sh` in host 3
