@@ -1,4 +1,4 @@
-# Project created for the Logistic Tech Challenge organized by Intelipost ![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
+# Project created for Logistic Tech Challenge organized by Intelipost ![Image of Intelipost](https://res-2.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/ycjnt9dguvvy7yv5pz1p)
 
 
 # Hyperledger-composer-with-multiple-host-improved-build
