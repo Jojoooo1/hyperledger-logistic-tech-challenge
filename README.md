@@ -1,3 +1,4 @@
+![Intelipost logo](https://static.eventials.com/media/thumb_cache/a0/92/a0920e3b5071371b8265c249fe7a59b9.jpg)
 ## Project created for Logistic Tech Challenge organized and hosted by [Intelipost](https://www.intelipost.com.br/)
 In July 2018, the 1st edition of the Intelipost Logistics Tech Challenge happened in São Paulo!
 
