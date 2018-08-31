@@ -10,8 +10,8 @@ The project has been developed using Hyperledger Fabric and Hyperledger composer
 This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container. (don't forget to change BIN_DIR to your corresponding path)<br/><br/>
 `startFabric_x.sh`<br/> 
 Script to start docker container.<br/><br/>
-`initIdentityAndChainCode_x.sh`<br/>
-This script create all the identities and instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card.
+`initIdentityAndChainCode_1.sh`<br/>
+This script create all the identities and instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card. `initIdentityAndChainCode_2.sh` & `initIdentityAndChainCode_3.sh` are just for importing the card created by `initIdentityAndChainCode_1.sh` and placed in toSendAfterIdentityCreation.
 
 ### Create swarm:<br/>
 Initialize swarm manager on PC1:<br/>
