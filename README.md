@@ -5,8 +5,9 @@ Organized by Intelipost, in partnership with Oracle Brasil and Abralog, 50 parti
 
 #### Technical approach
 The project has been developed using Hyperledger Fabric and Hyperledger composer. The network is build on top of a swarn network for being able to have 3 node running on different places.<br/><br/>
-Script explanation: <br/>
-Change bin path to your corresponding path in `build.sh`. This script generate the crypto and channel artifacts necessary for creating the fabric network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container.<br/>
+Script approach: <br/>
+`build.sh`: Change bin path to your corresponding path.<br/> 
+This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container.<br/>
 `startFabric_x.sh` contain the script to start docker container.<br/>
 `initIdentityAndChainCode_x.sh` will create all the identity to participate to the network and also instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card.
 
@@ -28,8 +29,8 @@ sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp &&
 
 1. Build the config `build.sh`
 2. Send file created in folder toSendAfterBuild to corresponding host
-3. Start startFabric_1.sh in host1 
+3. Start `startFabric_1.sh` in host1 
 4. Start `StartFabric_2.sh` in host 2, `StartFabric_3.sh` in host 3
 5. Create the identity and chaincode instantiation by executing `initIdentityAndChainCode_1.sh`
-6. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as initIdentityAndChainCode_x.sh
-7. Start initIdentityAndChainCode_2.sh in host 2, initIdentityAndChainCode_3.sh in host 3
+6. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as `initIdentityAndChainCode_x.sh`
+7. Start `initIdentityAndChainCode_2.sh` in host 2, `initIdentityAndChainCode_3.sh` in host 3
