@@ -5,10 +5,10 @@ Organized by Intelipost, in partnership with Oracle Brasil and Abralog, 50 parti
 
 ### Technical approach
 The project has been developed using Hyperledger Fabric and Hyperledger composer. The network is build on top of a swarn network for being able to have 3 nodes running on different places.<br/><br/>
-Script approach: <br/>
+##### Script approach: <br/>
 `build.sh`: Change bin path to your corresponding path.<br/> 
-This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container.<br/>
-`startFabric_x.sh` contain the script to start docker container.<br/>
+This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container.<br/><br/>
+`startFabric_x.sh` contain the script to start docker container.<br/><br/>
 `initIdentityAndChainCode_x.sh` will create all the identity to participate to the network and also instantiate the smart contract on node 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card.
 
 ### Step to create the network
