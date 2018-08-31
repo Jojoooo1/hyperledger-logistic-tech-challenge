@@ -14,17 +14,17 @@ Script to start docker container.<br/><br/>
 This script create all the identities and instantiate the smart contract on node 1, 2 & 3. It has been created for instantiating everything from node 1. When executed it will create a toSendAfterIdentityCreation folder to send to peer 2 & 3 containing admin identity card. `initIdentityAndChainCode_2.sh` & `initIdentityAndChainCode_3.sh` are just for importing the card created by `initIdentityAndChainCode_1.sh` and placed in toSendAfterIdentityCreation.
 
 ### Create swarm<br/>
-Initialize swarm manager on PC1:<br/>
+##### Initialize swarm manager on PC1<br/>
 `docker swarm init --advertise-addr 192.168.1.31` (in terminal get your ip: ip addr  => should show inet 192.168.1.31)<br/>
-After tipping the command it will show you something similar as `docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31` <br/><br/>
+After tipping the command it will show you something similar as `docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31` <br/>
 
-On PC2, PC3: Join the swarm as worker by coping the command showed after swarm init:<br/>
+##### On PC2, PC3: Join the swarm as worker by coping the command showed after swarm init:<br/>
 `docker swarm join --token SWMTKN-1-1ymnwhc93p9hp8hyu3m1fb7p64alnvhbm1h5howee3755idwuo-0j5bj0jcrswbskl92vmi8eu3x 192.168.1.31`<br/>
 
-Create docker network <br/>
+##### Create docker network <br/>
 `docker network create --attachable --driver overlay my-net`<br/>
 
-Open Port on your different host <br/>
+##### Open Port on your different host <br/>
 `sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp && sudo ufw allow 4789/udp`<br/>
 (TCP port 2377 for cluster management communications, TCP and UDP port 7946 for communication among nodes UDP port 4789 for overlay network traffic)
 
