@@ -36,3 +36,4 @@ After tipping the command it will show you something similar as `docker swarm jo
 4. Create the identity and chaincode instantiation by executing `initIdentityAndChainCode_1.sh` in host 1
 5. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as `initIdentityAndChainCode_x.sh`
 6. Start `initIdentityAndChainCode_2.sh` in host 2, `initIdentityAndChainCode_3.sh` in host 3
+7. You are then free to create a composer-rest-server for interacting with your smart contract  
