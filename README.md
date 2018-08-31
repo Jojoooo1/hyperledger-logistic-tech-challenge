@@ -1,3 +1,6 @@
+# Project created for the Logistic Tech Challenge organized by Intelipost ![alt text](https://s3-sa-east-1.amazonaws.com/prod-jobsite-files.kenoby.com/uploads/intelipost-1522359842-intelipostpng.png")
+
+
 # Hyperledger-composer-with-multiple-host-improved-build
 hyperledger composer on multiple host
 
