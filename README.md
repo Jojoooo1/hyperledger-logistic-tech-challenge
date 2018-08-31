@@ -33,7 +33,7 @@ Open Port on your different host <br/>
 ### Mount the project<br/>
 1. Build the config `build.sh`
 2. Send file created in folder toSendAfterBuild to host 2 & 3
-3. Start `startFabric_1.sh` in host1, start `StartFabric_2.sh` in host 2, `StartFabric_3.sh` in host 3
+3. Start `startFabric_1.sh` in host 1, start `StartFabric_2.sh` in host 2, `StartFabric_3.sh` in host 3
 4. Create the identity and chaincode instantiation by executing `initIdentityAndChainCode_1.sh` in host 1
 5. Send the card created in folder toSendAfterIdentityCreation to corresponding host and copy it in the same folder as `initIdentityAndChainCode_x.sh`
 6. Start `initIdentityAndChainCode_2.sh` in host 2, `initIdentityAndChainCode_3.sh` in host 3
