@@ -1,4 +1,4 @@
-# Project created for Logistic Tech Challenge organized by Intelipost ![Image of Intelipost](https://res-2.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_256,w_256,f_auto,q_auto:eco/ycjnt9dguvvy7yv5pz1p)
+# Project created for Logistic Tech Challenge organized by ![Image of Intelipost](https://www.intelipost.com.br/wp-content/uploads/2016/03/logo-intelipost-negativo.png 250w, https://www.intelipost.com.br/wp-content/uploads/2016/03/logo-intelipost-negativo-retina.png 500w)
 
 
 # Hyperledger-composer-with-multiple-host-improved-build
