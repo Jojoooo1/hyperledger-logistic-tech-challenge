@@ -1,4 +1,4 @@
-## Project created for Logistic Tech Challenge organized by [Intelipost](https://www.intelipost.com.br/)
+## Project created for Logistic Tech Challenge organized and hosted by [Intelipost](https://www.intelipost.com.br/)
 In July 2018, the 1st edition of the Intelipost Logistics Tech Challenge happened in São Paulo!
 
 Organized by Intelipost, in partnership with Oracle Brasil and Abralog, 50 participants had been selected for a 2-day event in Hackathon format, for developing a solutions using Blockchain technology for logistics.
@@ -24,11 +24,10 @@ On PC2, PC3: Join the swarm as worker by coping the command showed after swarm i
 
 
 Create docker network <br/>
-`docker network create --attachable --driver overlay my-net`
+`docker network create --attachable --driver overlay my-net`<br/>
 
 Open Port on your different host <br/>
-`sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp && sudo ufw allow 4789/udp`
-
+`sudo ufw allow 2377/tcp && sudo ufw allow 7946/tcp && sudo ufw allow 7946/udp && sudo ufw allow 4789/udp`<br/>
 (TCP port 2377 for cluster management communications, TCP and UDP port 7946 for communication among nodes UDP port 4789 for overlay network traffic)
 
 ### Mount the project<br/>
