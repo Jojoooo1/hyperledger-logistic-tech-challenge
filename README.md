@@ -4,7 +4,7 @@ In July 2018, the 1st edition of the Intelipost Logistics Tech Challenge happene
 Organized by Intelipost, in partnership with Oracle Brasil and Abralog, 50 participants had been selected for a 2-day event in Hackathon format, for developing a solutions using Blockchain technology for logistics.
 
 ### Technical approach
-The project has been developed using Hyperledger Fabric and Hyperledger composer. The network is build on top of a swarn network for being able to have 3 node running on different places.<br/><br/>
+The project has been developed using Hyperledger Fabric and Hyperledger composer. The network is build on top of a swarn network for being able to have 3 nodes running on different places.<br/><br/>
 Script approach: <br/>
 `build.sh`: Change bin path to your corresponding path.<br/> 
 This script will generate crypto and channel artifacts necessary for creating the network. It will also create a toSendAfterBuild folder containing those artifacts for other node to be able to start their corresponding docker container.<br/>
