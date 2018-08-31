@@ -1,4 +1,4 @@
-# Project created for Logistic Tech Challenge organized by ![Image of Intelipost](https://www.intelipost.com.br/wp-content/uploads/2016/03/logo-intelipost-negativo.png)
+# Project created for Logistic Tech Challenge organized by [Intelipost](https://www.intelipost.com.br/)
 
 
 # Hyperledger-composer-with-multiple-host-improved-build
